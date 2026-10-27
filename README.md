@@ -1,6 +1,6 @@
 # JARVIS (prototype)
 
-**Local** personal assistant inspired by J.A.R.V.I.S., for Windows 11: a web interface with an animated 3D sphere, chat, Portuguese voice, restricted local actions, and optional integrations (Hermes Agent, Google Calendar/Gmail, Spotify, and the [M-Search+](../msearch-plus) search engine).
+**Local** personal assistant inspired by J.A.R.V.I.S., for Windows 11: a web interface with an animated 3D sphere, chat, Portuguese voice, restricted local actions, and optional integrations (Hermes Agent, Google Calendar/Gmail, Spotify, and the [M-Search+](https://github.com/migueljhonatadeaguiar1-cloud/msearch-plus) search engine).
 
 > ⚠️ **Prototype.** Built and tested on a single Windows computer. Expect rough edges, and read the [Security](#security) section before connecting accounts or agents.
 >
