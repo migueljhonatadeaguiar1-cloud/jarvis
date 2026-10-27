@@ -28,8 +28,8 @@
 
 ```powershell
 # 1. Clone both projects side by side
-git clone https://github.com/YOUR-USERNAME/jarvis.git
-git clone https://github.com/YOUR-USERNAME/msearch-plus.git
+git clone https://github.com/migueljhonatadeaguiar1-cloud/jarvis.git
+git clone https://github.com/migueljhonatadeaguiar1-cloud/msearch-plus.git
 
 # 2. Configure JARVIS
 cd jarvis
