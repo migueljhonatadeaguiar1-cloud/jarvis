@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#020204" />
+  <title>JARVIS // Orb Interface</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="JARVIS início"><span class="brand-mark">◈</span><span>J.A.R.V.I.S.</span></a>
+      <div class="system-readout"><span class="live-dot"></span><span id="systemStatus">SISTEMA ONLINE</span><span class="readout-divider">//</span><span>NÚCLEO LOCAL</span></div>
+    </header>
+
+    <main>
+      <section id="chatMode" class="mode mode-chat">
+        <div class="chat-heading">
+          <div><p class="eyebrow">CONVERSAÇÃO LOCAL // PROVEDORES CONFIGURÁVEIS</p><h1 id="greetingTitle">À sua disposição, Senhor.</h1><p class="subhead">Comandos locais continuam disponíveis mesmo quando um provedor de IA decide tirar uma pausa.</p></div>
+          <button id="voiceModeButton" class="mode-switch" type="button"><span class="switch-icon">◉</span> MODO VOZ</button>
+        </div>
+        <section class="briefing" aria-labelledby="briefingTitle">
+          <div class="briefing-heading"><div><p class="eyebrow">BRIEFING PESSOAL</p><h2 id="briefingTitle">Panorama desta manhã</h2></div><div class="briefing-controls"><button id="readBriefing" class="back-button" type="button">▶ OUVIR BRIEFING</button><button id="refreshBriefing" class="back-button" type="button">ATUALIZAR</button></div></div>
+          <div class="briefing-grid"><article class="briefing-card"><h3>BRASIL · POLÍTICA · DESTAQUES</h3><div id="newsList" class="briefing-list" aria-live="polite">Consultando fontes de notícias…</div></article><article class="briefing-card"><div class="briefing-card-heading"><h3>SUA AGENDA · PRÓXIMAS 24H</h3><button id="connectGoogle" class="briefing-link" type="button">CONECTAR GOOGLE</button></div><div id="calendarList" class="briefing-list" aria-live="polite">Agenda não consultada. Será solicitada confirmação antes do acesso.</div><form id="calendarEventForm" class="calendar-event-form"><strong id="calendarFormTitle">Novo compromisso</strong><input id="calendarEventId" type="hidden" /><label for="calendarEventName">Título</label><input id="calendarEventName" maxlength="250" required placeholder="Ex.: Reunião de projeto" /><div class="calendar-time-row"><label>Início<input id="calendarEventStart" type="datetime-local" required /></label><label>Término<input id="calendarEventEnd" type="datetime-local" required /></label></div><label for="calendarEventDescription">Descrição (opcional)</label><textarea id="calendarEventDescription" rows="2" maxlength="3000" placeholder="Detalhes do compromisso"></textarea><div class="calendar-form-actions"><button class="briefing-link" type="submit">SALVAR NO GOOGLE</button><button id="cancelCalendarEdit" class="briefing-link" type="button" hidden>CANCELAR EDIÇÃO</button></div><span id="calendarEditStatus" class="settings-note" aria-live="polite"></span></form></article><article class="briefing-card"><div class="briefing-card-heading"><h3>GMAIL · CAIXA DE ENTRADA</h3><button id="refreshGmail" class="briefing-link" type="button">ATUALIZAR</button></div><p id="gmailStatus" class="mail-status" aria-live="polite">Caixa não consultada. Será solicitada confirmação antes do acesso.</p><div id="gmailList" class="briefing-list" aria-live="polite"></div></article></div>
+          <p class="briefing-audio-status" aria-live="polite"><span id="spotifyStatus">Solicitando abertura do Spotify…</span><span id="startupAudioStatus">Preparando o briefing falado…</span></p>
+        </section>
+        <div id="messages" class="messages" aria-live="polite">
+          <article class="message message-system"><div class="message-label">J.A.R.V.I.S. // ONLINE</div><p>Bom dia, Senhor. Revisei o panorama disponível. Como posso ser útil?</p></article>
+        </div>
+        <form id="chatForm" class="composer">
+          <textarea id="chatInput" rows="1" maxlength="8000" placeholder="Escreva para o JARVIS..." aria-label="Mensagem para o JARVIS"></textarea>
+          <div class="composer-footer"><span id="chatHint">ENTER envia · SHIFT+ENTER nova linha</span><button class="send-button" type="submit">ENVIAR <span>↗</span></button></div>
+        </form>
+        <div class="quick-actions"><button type="button" data-prompt="Resuma o que você pode fazer.">CAPACIDADES</button><button type="button" data-prompt="Verifique o status da conexão.">STATUS</button><button type="button" data-prompt="Abra o Search+.">ABRIR M-SEARCH+</button><button id="settingsButton" type="button">CONECTORES E APIs</button></div>
+      </section>
+
+      <section id="voiceMode" class="mode mode-voice" hidden>
+        <div class="voice-topline"><button id="chatModeButton" class="back-button" type="button">← CHAT</button><p class="eyebrow">INTERFACE DE VOZ // ESFERA ATIVA</p><span class="voice-state" id="voiceState">PRONTO</span></div>
+        <div id="orbStage" class="orb-stage"><div class="orb-title">SYSTEM: MARK-42 // FIXED AXIS ORB</div><div id="orbCanvas" class="orb-canvas"></div><div class="orb-help">CLIQUE PARA OUVIR · ARRASTE PARA GIRAR · RODA PARA ZOOM</div></div>
+        <div class="voice-transcript"><span class="transcript-label">TRANSCRIÇÃO</span><p id="transcript">Toque no microfone para falar com o JARVIS.</p></div>
+        <button id="micButton" class="mic-button" type="button"><span class="mic-glyph">◉</span><span id="micLabel">INICIAR ESCUTA</span></button>
+        <p class="voice-note">O reconhecimento de fala usa o recurso do navegador. A resposta é processada pelo backend local.</p>
+      </section>
+    </main>
+
+    <footer class="footer"><span>JARVIS // ORB INTERFACE</span><span id="connectionState">BACKEND: verificando...</span><span>v0.1 LOCAL</span></footer>
+  </div>
+  <dialog id="settingsDialog" class="settings-dialog">
+    <form id="settingsForm" method="dialog">
+      <div class="settings-heading"><div><p class="eyebrow">CONFIGURAÇÃO PRIVADA</p><h2>Conectores e APIs</h2></div><button id="settingsClose" class="back-button" type="button" aria-label="Fechar">✕</button></div>
+      <section class="connector-card" aria-labelledby="googleConnectorTitle">
+        <div class="settings-subheading"><h3 id="googleConnectorTitle">Google · Agenda e Gmail</h3><span id="googleStatus" class="settings-note">Verificando…</span></div>
+        <p class="settings-note">Conecte sua conta Google para consultar e editar eventos da agenda e ler e-mails. A autorização abre no Google e retorna ao JARVIS local.</p>
+        <div class="connector-actions"><button id="connectGoogleSettings" class="back-button" type="button">CONECTAR CONTA GOOGLE</button><button id="disconnectGoogle" class="back-button" type="button" hidden>DESCONECTAR</button></div>
+        <p class="settings-note">No Google Cloud, cadastre em <strong>URIs de redirecionamento autorizados</strong> (não em Origens JavaScript): <code id="googleRedirectUri">http://127.0.0.1:3000/oauth/google/callback</code></p>
+      </section>
+      <hr class="settings-divider" />
+      <div class="settings-subheading"><h3>Provedor de IA</h3></div>
+      <label for="providerSelect">Provedor ativo</label><select id="providerSelect"></select>
+      <label for="providerModel">Modelo</label><input id="providerModel" maxlength="180" autocomplete="off" />
+      <label for="providerKey"><span id="providerKeyLabel">Chave de API</span> <span id="keyStatus"></span></label><input id="providerKey" type="password" maxlength="500" placeholder="Deixe vazio para manter a chave atual" autocomplete="new-password" />
+      <div id="hermesOptions" hidden><label for="hermesBaseUrl">Endereço local do gateway Hermes (opcional)</label><input id="hermesBaseUrl" maxlength="300" value="http://127.0.0.1:8642/v1" autocomplete="off" /><p class="settings-note">O JARVIS tenta usar o Hermes CLI local automaticamente, sem precisar abrir gateway. Se preferir o gateway OpenAI-compatible, informe sua API_SERVER_KEY; ela é diferente da chave NVIDIA NIM e fica apenas no backend.</p><p class="settings-note">O Hermes pode pesquisar na web e usar as ferramentas configuradas nele. Ações destrutivas e sensíveis devem continuar exigindo confirmação.</p><button id="testHermesButton" class="back-button" type="button">TESTAR HERMES LOCAL</button><span id="hermesTestStatus" class="settings-note" aria-live="polite"></span></div>
+      <hr class="settings-divider" />
+      <div class="settings-subheading"><h3>JARVIS Voice Studio</h3><span id="voiceStudioStatus" class="settings-note">Verificando…</span></div>
+      <p id="voiceStudioDetails" class="settings-note">O JARVIS usa o provedor, a voz e as preferências salvos no Voice Studio.</p>
+      <div class="connector-actions"><button id="openVoiceStudio" class="back-button" type="button">ABRIR VOICE STUDIO</button><button id="refreshVoiceStudio" class="back-button" type="button">ATUALIZAR STATUS</button></div>
+      <p class="settings-note">A voz local usa Windows Speech. Se o Voice Studio estiver configurado com OpenAI, o texto será enviado ao serviço somente após sua confirmação. A chave continua no Gerenciador de Credenciais do Windows.</p>
+      <hr class="settings-divider" />
+      <label for="googleClientId">OAuth Client ID</label><input id="googleClientId" maxlength="300" placeholder="Cole o Client ID do aplicativo local" autocomplete="off" />
+      <label for="googleClientSecret">OAuth Client Secret</label><input id="googleClientSecret" type="password" maxlength="500" placeholder="Deixe vazio para manter o valor salvo" autocomplete="new-password" />
+      <p class="settings-note">Habilite as APIs Google Calendar e Gmail no Google Cloud. O JARVIS usa gmail.readonly: pode consultar, mas não enviar, alterar, arquivar ou excluir e-mails. Quando o senhor pergunta sobre Agenda ou Gmail, os registros relevantes são enviados ao Hermes para análise; com Hermes indisponível, o JARVIS preserva os dados localmente e não os envia a outro provedor. O Client Secret e o token OAuth ficam no backend local.</p>
+      <hr class="settings-divider" />
+      <div class="settings-subheading"><h3>Aplicativos autorizados</h3></div>
+      <label for="customAppName">Nome usado no comando</label><input id="customAppName" maxlength="60" placeholder="Ex.: Photoshop" autocomplete="off" />
+      <label for="customAppPath">Caminho completo do executável (.exe)</label><input id="customAppPath" maxlength="1000" placeholder="C:\Program Files\...\app.exe" autocomplete="off" />
+      <button id="addCustomApp" class="back-button" type="button">ADICIONAR APLICATIVO</button>
+      <span id="customAppStatus" class="settings-note" aria-live="polite"></span>
+      <div id="customAppsList" class="custom-apps-list" aria-live="polite"></div>
+      <p class="settings-note">O JARVIS só abrirá aplicativos nesta lista e enviará uma solicitação simples de abertura, sem parâmetros. Use o caminho do programa no Windows. Não há execução de comandos livres.</p>
+      <div class="settings-actions"><button id="settingsCancel" class="back-button" type="button">CANCELAR</button><button class="send-button" type="submit">SALVAR</button></div>
+    </form>
+  </dialog>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

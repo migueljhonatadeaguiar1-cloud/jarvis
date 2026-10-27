@@ -1,0 +1,19 @@
+# Segredos
+.env
+.env.*
+!.env.example
+
+# Dependências e caches
+node_modules/
+npm-debug.log*
+__pycache__/
+*.pyc
+.venv/
+
+# Dados gerados / mídia local
+*.wav
+*.db
+*.lnk
+
+# Modelo de voz (baixe conforme o README)
+jarvis-voice-studio/models/*.onnx

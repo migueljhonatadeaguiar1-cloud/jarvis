@@ -1,0 +1,10 @@
+{
+  "provider": "local",
+  "voice": "JARVIS — Official Voice · Faber (pt-BR)",
+  "locale": "pt-BR",
+  "speed": 1.0,
+  "volume": 0.85,
+  "model": "gpt-4o-mini-tts",
+  "cloud_voice": "onyx",
+  "expressiveness": 0.35
+}
